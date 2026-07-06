@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rivera St. Augustine Trip</title>
+  <style>
+:root {
+  --bg: #fff8ee;
+  --card: #ffffff;
+  --ink: #233142;
+  --muted: #6b7280;
+  --line: #eadfce;
+  --sea: #087f8c;
+  --sea-dark: #075d66;
+  --soft: #f7fbfa;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #fff3dc 0%, var(--bg) 52%, #f8fbfa 100%);
+  color: var(--ink);
+}
+.app {
+  width: min(430px, 100%);
+  margin: 0 auto;
+  padding: 18px 14px 32px;
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin: -18px -14px 10px;
+  padding: 12px 14px 10px;
+  background: rgba(255, 248, 238, .94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(234, 223, 206, .8);
+}
+.site-title {
+  font-weight: 950;
+  letter-spacing: -.03em;
+  margin-bottom: 9px;
+}
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+.tab {
+  text-align: center;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 8px 6px;
+  font-weight: 900;
+  font-size: .82rem;
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--sea-dark);
+  font: inherit;
+  cursor: pointer;
+}
+.tab.active {
+  background: var(--sea);
+  color: white;
+  border-color: var(--sea);
+}
+.tab.disabled {
+  color: #9a8f80;
+  background: #fffaf1;
+}
+.hero { padding: 10px 2px 12px; }
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--sea-dark);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .68rem;
+  font-weight: 900;
+}
+h1 { margin: 0; font-size: clamp(2.45rem, 14vw, 3.4rem); line-height: .92; letter-spacing: -.05em; }
+.hero p:not(.eyebrow) {
+  margin: 10px 0 0;
+  color: #4b5563;
+  line-height: 1.35;
+  font-size: 1rem;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 10px 24px rgba(8, 127, 140, .08);
+}
+.stack { display: grid; gap: 13px; }
+.mini-section {
+  display: grid;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fffdf9;
+}
+.breakfast-box { background: var(--soft); }
+h2 { margin: 0; font-size: 1.2rem; letter-spacing: -.03em; }
+label {
+  display: grid;
+  gap: 5px;
+  color: var(--sea-dark);
+  font-weight: 850;
+  font-size: .94rem;
+}
+input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 13px;
+  color: var(--ink);
+  background: white;
+  font: inherit;
+  outline: none;
+}
+input:focus { border-color: var(--sea); box-shadow: 0 0 0 4px rgba(8, 127, 140, .12); }
+button {
+  border: 0;
+  border-radius: 999px;
+  background: var(--sea);
+  color: white;
+  padding: 13px 14px;
+  font-weight: 900;
+  font: inherit;
+  cursor: pointer;
+}
+button:active { transform: scale(.98); }
+.save-message {
+  margin: 0;
+  padding: 11px 12px;
+  border-radius: 14px;
+  background: #eef8f6;
+  color: var(--sea-dark);
+  font-weight: 850;
+  line-height: 1.35;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.pill {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #eef8f6;
+  color: var(--sea-dark);
+  font-size: .78rem;
+  font-weight: 900;
+}
+.places-box { background: #fffdf9; }
+.compact-hero h1 { font-size: clamp(2.1rem, 12vw, 2.9rem); }
+.grocery-checklist { display: grid; gap: 12px; }
+.grocery-day {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px;
+  background: #fffdf9;
+}
+.grocery-day h2 { margin: 0 0 10px; font-size: 1.2rem; }
+.grocery-meal {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+.grocery-meal:first-of-type { border-top: 0; padding-top: 0; margin-top: 0; }
+.meal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.meal-head h3 { margin: 0; font-size: 1rem; }
+.add-item {
+  padding: 8px 10px;
+  font-size: .85rem;
+  background: #eef8f6;
+  color: var(--sea-dark);
+}
+.checklist { display: grid; gap: 7px; }
+.empty-list { margin: 0; color: var(--muted); font-size: .9rem; }
+.check-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 8px;
+}
+.check-row input { width: 18px; height: 18px; padding: 0; }
+.places-list { display: grid; gap: 8px; }
+.place-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 10px 11px;
+  background: #fffdf9;
+}
+.place-row strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+.place-row span { color: var(--muted); font-size: .86rem; }
+.icon { width: 30px; height: 30px; padding: 0; background: #ffe5e2; color: #b8443b; }
+@media (min-width: 520px) {
+  body { background: #f4efe7; }
+  .app { background: linear-gradient(180deg, #fff3dc 0%, var(--bg) 52%, #f8fbfa 100%); min-height: 100vh; }
+}
+
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="site-header">
+      <div class="site-title">Rivera St. Augustine Trip</div>
+      <nav class="tabs" aria-label="Trip planner sections">
+        <button class="tab active" type="button" data-tab="meal-ideas" aria-current="page">Meal Ideas</button>
+        <button class="tab" type="button" data-tab="grocery-list">Grocery List</button>
+        <button class="tab" type="button" data-tab="places-to-visit">Places to Visit</button>
+      </nav>
+    </header>
+
+    <div id="meal-ideas" class="page active-page">
+      <section class="hero">
+        <p class="eyebrow">Quick survey</p>
+        <h1>Meal ideas</h1>
+        <p>Please write two dinner ideas and two breakfast ideas.</p>
+      </section>
+
+      <section class="card form-card">
+        <form id="ideaForm" class="stack">
+          <label>Your name
+            <input id="personName" autocomplete="name" placeholder="Example: Viri" />
+          </label>
+
+          <div class="mini-section dinner-box">
+            <h2>Dinner ideas</h2>
+            <label>Dinner idea 1
+              <input id="dinnerOne" placeholder="Example: taco bar" />
+            </label>
+            <label>Dinner idea 2
+              <input id="dinnerTwo" placeholder="Example: pasta night" />
+            </label>
+          </div>
+
+          <div class="mini-section breakfast-box">
+            <h2>Breakfast ideas</h2>
+            <label>Breakfast idea 1
+              <input id="breakfastOne" placeholder="Example: bagels and fruit" />
+            </label>
+            <label>Breakfast idea 2
+              <input id="breakfastTwo" placeholder="Example: yogurt bar" />
+            </label>
+          </div>
+
+          <button type="submit">Submit ideas</button>
+          <p id="saveMessage" class="save-message" hidden>Thank you — your ideas were saved on this phone.</p>
+        </form>
+      </section>
+    </div>
+
+    <div id="grocery-list" class="page" hidden>
+      <section class="hero compact-hero">
+        <p class="eyebrow">Coming next</p>
+        <h1>Grocery list</h1>
+        <p>This will become the shopping checklist after the meals are chosen.</p>
+      </section>
+
+      <section class="card grocery-card">
+        <div id="groceryChecklist" class="grocery-checklist"></div>
+      </section>
+    </div>
+
+    <div id="places-to-visit" class="page" hidden>
+      <section class="hero compact-hero">
+        <p class="eyebrow">Things to do</p>
+        <h1>Places to visit</h1>
+        <p>Suggest touristy places or activities we may want to do besides the beach.</p>
+      </section>
+
+      <section class="card form-card">
+        <form id="placesForm" class="stack">
+          <label>Your name
+            <input id="placePersonName" autocomplete="name" placeholder="Example: Viri" />
+          </label>
+          <div class="mini-section places-box">
+            <h2>Suggestions</h2>
+            <label>Place or activity 1
+              <input id="placeOne" placeholder="Example: lighthouse" />
+            </label>
+            <label>Place or activity 2
+              <input id="placeTwo" placeholder="Example: old town trolley" />
+            </label>
+          </div>
+          <button type="submit">Submit places</button>
+          <p id="placesSaveMessage" class="save-message" hidden>Thank you — your places were saved on this phone.</p>
+        </form>
+      </section>
+
+      <section class="card places-list-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Already suggested</p>
+            <h2>Places & activities</h2>
+          </div>
+          <span id="placesCount" class="pill soft">0 ideas</span>
+        </div>
+        <div id="placesList" class="places-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+const STORAGE_KEY = 'stAugustineFamilySurveyOnly.v1';
+const GROCERY_KEY = 'stAugustineGroceryChecklist.v1';
+const PLACES_KEY = 'stAugustinePlacesToVisit.v1';
+const makeId = () => (globalThis.crypto?.randomUUID?.() || `idea-${Date.now()}-${Math.random().toString(16).slice(2)}`);
+
+// Clear old prototype data so older versions with dates/lists do not reappear on refresh.
+[
+  'stAugustineMeals.v1',
+  'stAugustineMeals.v2',
+  'stAugustineDinnerSurvey.v1',
+  'stAugustineMealIdeas.v1',
+  'stAugustineMealIdeas.v2'
+].forEach(key => localStorage.removeItem(key));
+
+const grocerySections = [
+  { id: 'day1-dinner', title: 'Day 1', meals: ['Dinner'] },
+  { id: 'day2', title: 'Day 2', meals: ['Breakfast', 'Dinner'] },
+  { id: 'day3', title: 'Day 3', meals: ['Breakfast', 'Dinner'] },
+  { id: 'day4', title: 'Day 4', meals: ['Breakfast', 'Dinner'] },
+  { id: 'day5-breakfast', title: 'Day 5', meals: ['Breakfast'] }
+];
+
+function normalize(text) {
+  return String(text).trim().replace(/\s+/g, ' ');
+}
+
+function loadSubmissions() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function loadGroceries() {
+  try {
+    return JSON.parse(localStorage.getItem(GROCERY_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveGroceries(data) {
+  localStorage.setItem(GROCERY_KEY, JSON.stringify(data));
+}
+
+function loadPlaces() {
+  try {
+    return JSON.parse(localStorage.getItem(PLACES_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+function savePlaces(data) {
+  localStorage.setItem(PLACES_KEY, JSON.stringify(data));
+}
+
+function savePlaceSuggestions(event) {
+  event.preventDefault();
+  const person = normalize(document.querySelector('#placePersonName').value);
+  const places = [
+    normalize(document.querySelector('#placeOne').value),
+    normalize(document.querySelector('#placeTwo').value)
+  ].filter(Boolean).slice(0, 2);
+
+  if (!person) return alert('Please add your name.');
+  if (!places.length) return alert('Please add at least one place or activity.');
+
+  const existing = loadPlaces();
+  const updated = existing.filter(item => item.person.toLowerCase() !== person.toLowerCase());
+  places.forEach(text => updated.push({ id: makeId(), person, text, submittedAt: new Date().toISOString() }));
+  savePlaces(updated);
+
+  ['placeOne', 'placeTwo'].forEach(id => document.querySelector(`#${id}`).value = '');
+  document.querySelector('#placesSaveMessage').hidden = false;
+  renderPlacesList();
+}
+
+function saveSubmission(event) {
+  event.preventDefault();
+  const person = normalize(document.querySelector('#personName').value);
+  const dinners = [
+    normalize(document.querySelector('#dinnerOne').value),
+    normalize(document.querySelector('#dinnerTwo').value)
+  ].filter(Boolean).slice(0, 2);
+  const breakfasts = [
+    normalize(document.querySelector('#breakfastOne').value),
+    normalize(document.querySelector('#breakfastTwo').value)
+  ].filter(Boolean).slice(0, 2);
+
+  if (!person) return alert('Please add your name.');
+  if (!dinners.length && !breakfasts.length) return alert('Please add at least one dinner or breakfast idea.');
+
+  const submissions = loadSubmissions();
+  const withoutThisPerson = submissions.filter(item => item.person.toLowerCase() !== person.toLowerCase());
+  withoutThisPerson.push({ id: makeId(), person, dinners, breakfasts, submittedAt: new Date().toISOString() });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(withoutThisPerson));
+
+  ['dinnerOne', 'dinnerTwo', 'breakfastOne', 'breakfastTwo'].forEach(id => document.querySelector(`#${id}`).value = '');
+  const message = document.querySelector('#saveMessage');
+  message.hidden = false;
+}
+
+function showTab(tabId) {
+  document.querySelectorAll('.page').forEach(page => {
+    const active = page.id === tabId;
+    page.hidden = !active;
+    page.classList.toggle('active-page', active);
+  });
+  document.querySelectorAll('.tab').forEach(tab => {
+    const active = tab.dataset.tab === tabId;
+    tab.classList.toggle('active', active);
+    if (active) tab.setAttribute('aria-current', 'page');
+    else tab.removeAttribute('aria-current');
+  });
+}
+
+function groceryKey(dayId, meal) {
+  return `${dayId}:${meal}`;
+}
+
+function renderGroceryChecklist() {
+  const container = document.querySelector('#groceryChecklist');
+  if (!container) return;
+  const groceries = loadGroceries();
+  container.innerHTML = '';
+
+  grocerySections.forEach(section => {
+    const sectionEl = document.createElement('article');
+    sectionEl.className = 'grocery-day';
+    sectionEl.innerHTML = `<h2>${section.title}</h2>`;
+
+    section.meals.forEach(meal => {
+      const key = groceryKey(section.id, meal);
+      const mealItems = groceries[key] || [];
+      const mealEl = document.createElement('div');
+      mealEl.className = 'grocery-meal';
+      mealEl.innerHTML = `
+        <div class="meal-head">
+          <h3>${meal}</h3>
+          <button type="button" class="add-item" data-key="${key}">Add item</button>
+        </div>
+        <div class="checklist" data-list="${key}"></div>
+      `;
+      const listEl = mealEl.querySelector('.checklist');
+      if (!mealItems.length) {
+        listEl.innerHTML = '<p class="empty-list">No items yet.</p>';
+      } else {
+        mealItems.forEach(item => {
+          const row = document.createElement('label');
+          row.className = 'check-row';
+          row.innerHTML = `<input type="checkbox" ${item.done ? 'checked' : ''} data-check-id="${item.id}" data-key="${key}"><span>${escapeHtml(item.text)}</span><button type="button" class="icon" data-remove-id="${item.id}" data-key="${key}" aria-label="Remove item">×</button>`;
+          listEl.appendChild(row);
+        });
+      }
+      sectionEl.appendChild(mealEl);
+    });
+
+    container.appendChild(sectionEl);
+  });
+
+  container.querySelectorAll('.add-item').forEach(btn => btn.addEventListener('click', () => addGroceryItem(btn.dataset.key)));
+  container.querySelectorAll('[data-check-id]').forEach(box => box.addEventListener('change', () => toggleGroceryItem(box.dataset.key, box.dataset.checkId, box.checked)));
+  container.querySelectorAll('[data-remove-id]').forEach(btn => btn.addEventListener('click', () => removeGroceryItem(btn.dataset.key, btn.dataset.removeId)));
+}
+
+function addGroceryItem(key) {
+  const text = normalize(prompt('Grocery item to add:') || '');
+  if (!text) return;
+  const groceries = loadGroceries();
+  groceries[key] ||= [];
+  groceries[key].push({ id: makeId(), text, done: false });
+  saveGroceries(groceries);
+  renderGroceryChecklist();
+}
+
+function toggleGroceryItem(key, id, done) {
+  const groceries = loadGroceries();
+  groceries[key] = (groceries[key] || []).map(item => item.id === id ? { ...item, done } : item);
+  saveGroceries(groceries);
+}
+
+function removeGroceryItem(key, id) {
+  const groceries = loadGroceries();
+  groceries[key] = (groceries[key] || []).filter(item => item.id !== id);
+  saveGroceries(groceries);
+  renderGroceryChecklist();
+}
+
+function renderPlacesList() {
+  const list = document.querySelector('#placesList');
+  if (!list) return;
+  const places = loadPlaces().sort((a, b) => a.text.localeCompare(b.text));
+  document.querySelector('#placesCount').textContent = `${places.length} idea${places.length === 1 ? '' : 's'}`;
+  list.innerHTML = '';
+
+  if (!places.length) {
+    list.innerHTML = '<p class="empty-list">No places suggested yet.</p>';
+    return;
+  }
+
+  places.forEach(place => {
+    const row = document.createElement('article');
+    row.className = 'place-row';
+    row.innerHTML = `<div><strong>${escapeHtml(place.text)}</strong><span>Suggested by ${escapeHtml(place.person)}</span></div><button type="button" class="icon" data-remove-place="${place.id}" aria-label="Remove place">×</button>`;
+    list.appendChild(row);
+  });
+
+  list.querySelectorAll('[data-remove-place]').forEach(btn => btn.addEventListener('click', () => removePlace(btn.dataset.removePlace)));
+}
+
+function removePlace(id) {
+  savePlaces(loadPlaces().filter(place => place.id !== id));
+  renderPlacesList();
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"]/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'}[c]));
+}
+
+document.querySelector('#ideaForm').addEventListener('submit', saveSubmission);
+document.querySelector('#placesForm').addEventListener('submit', savePlaceSuggestions);
+document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => showTab(tab.dataset.tab)));
+renderGroceryChecklist();
+renderPlacesList();
+const initialTab = new URLSearchParams(location.search).get('tab');
+if (['grocery-list', 'places-to-visit'].includes(initialTab)) showTab(initialTab);
+
+  </script>
+</body>
+</html>

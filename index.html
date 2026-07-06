@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rivera St. Augustine Trip</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="site-header">
+      <div class="site-title">Rivera St. Augustine Trip</div>
+      <nav class="tabs" aria-label="Trip planner sections">
+        <button class="tab active" type="button" data-tab="meal-ideas" aria-current="page">Meal Ideas</button>
+        <button class="tab" type="button" data-tab="grocery-list">Grocery List</button>
+        <button class="tab" type="button" data-tab="places-to-visit">Places to Visit</button>
+      </nav>
+    </header>
+
+    <div id="meal-ideas" class="page active-page">
+      <section class="hero">
+        <p class="eyebrow">Quick survey</p>
+        <h1>Meal ideas</h1>
+        <p>Please write two dinner ideas and two breakfast ideas.</p>
+      </section>
+
+      <section class="card form-card">
+        <form id="ideaForm" class="stack">
+          <label>Your name
+            <input id="personName" autocomplete="name" placeholder="Example: Viri" />
+          </label>
+
+          <div class="mini-section dinner-box">
+            <h2>Dinner ideas</h2>
+            <label>Dinner idea 1
+              <input id="dinnerOne" placeholder="Example: taco bar" />
+            </label>
+            <label>Dinner idea 2
+              <input id="dinnerTwo" placeholder="Example: pasta night" />
+            </label>
+          </div>
+
+          <div class="mini-section breakfast-box">
+            <h2>Breakfast ideas</h2>
+            <label>Breakfast idea 1
+              <input id="breakfastOne" placeholder="Example: bagels and fruit" />
+            </label>
+            <label>Breakfast idea 2
+              <input id="breakfastTwo" placeholder="Example: yogurt bar" />
+            </label>
+          </div>
+
+          <button type="submit">Submit ideas</button>
+          <p id="saveMessage" class="save-message" hidden>Thank you — your ideas were saved on this phone.</p>
+        </form>
+      </section>
+    </div>
+
+    <div id="grocery-list" class="page" hidden>
+      <section class="hero compact-hero">
+        <p class="eyebrow">Coming next</p>
+        <h1>Grocery list</h1>
+        <p>This will become the shopping checklist after the meals are chosen.</p>
+      </section>
+
+      <section class="card grocery-card">
+        <div id="groceryChecklist" class="grocery-checklist"></div>
+      </section>
+    </div>
+
+    <div id="places-to-visit" class="page" hidden>
+      <section class="hero compact-hero">
+        <p class="eyebrow">Things to do</p>
+        <h1>Places to visit</h1>
+        <p>Suggest touristy places or activities we may want to do besides the beach.</p>
+      </section>
+
+      <section class="card form-card">
+        <form id="placesForm" class="stack">
+          <label>Your name
+            <input id="placePersonName" autocomplete="name" placeholder="Example: Viri" />
+          </label>
+          <div class="mini-section places-box">
+            <h2>Suggestions</h2>
+            <label>Place or activity 1
+              <input id="placeOne" placeholder="Example: lighthouse" />
+            </label>
+            <label>Place or activity 2
+              <input id="placeTwo" placeholder="Example: old town trolley" />
+            </label>
+          </div>
+          <button type="submit">Submit places</button>
+          <p id="placesSaveMessage" class="save-message" hidden>Thank you — your places were saved on this phone.</p>
+        </form>
+      </section>
+
+      <section class="card places-list-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Already suggested</p>
+            <h2>Places & activities</h2>
+          </div>
+          <span id="placesCount" class="pill soft">0 ideas</span>
+        </div>
+        <div id="placesList" class="places-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
