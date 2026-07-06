@@ -135,6 +135,13 @@ button:active { transform: scale(.98); }
   font-weight: 850;
   line-height: 1.35;
 }
+.helper-text,
+.muted-card p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.35;
+}
+.muted-card { background: #f7fbfa; }
 .section-head {
   display: flex;
   justify-content: space-between;

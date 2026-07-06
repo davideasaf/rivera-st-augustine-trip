@@ -50,38 +50,20 @@
             </label>
           </div>
 
-          <button type="submit">Submit ideas</button>
-          <p id="saveMessage" class="save-message" hidden>Thank you — your ideas were saved on this phone.</p>
+          <button type="submit">Submit meal ideas</button>
+          <p id="saveMessage" class="save-message" hidden>Thank you — your meal ideas were saved on this phone.</p>
         </form>
-      </section>
-    </div>
-
-    <div id="grocery-list" class="page" hidden>
-      <section class="hero compact-hero">
-        <p class="eyebrow">Coming next</p>
-        <h1>Grocery list</h1>
-        <p>This will become the shopping checklist after the meals are chosen.</p>
-      </section>
-
-      <section class="card grocery-card">
-        <div id="groceryChecklist" class="grocery-checklist"></div>
-      </section>
-    </div>
-
-    <div id="places-to-visit" class="page" hidden>
-      <section class="hero compact-hero">
-        <p class="eyebrow">Things to do</p>
-        <h1>Places to visit</h1>
-        <p>Suggest touristy places or activities we may want to do besides the beach.</p>
       </section>
 
       <section class="card form-card">
         <form id="placesForm" class="stack">
+          <p class="eyebrow">Also on this page</p>
+          <h2>Places to visit</h2>
+          <p class="helper-text">Suggest touristy places or activities we may want to do besides the beach.</p>
           <label>Your name
             <input id="placePersonName" autocomplete="name" placeholder="Example: Viri" />
           </label>
           <div class="mini-section places-box">
-            <h2>Suggestions</h2>
             <label>Place or activity 1
               <input id="placeOne" placeholder="Example: lighthouse" />
             </label>
@@ -103,6 +85,31 @@
           <span id="placesCount" class="pill soft">0 ideas</span>
         </div>
         <div id="placesList" class="places-list"></div>
+      </section>
+    </div>
+
+    <div id="grocery-list" class="page" hidden>
+      <section class="hero compact-hero">
+        <p class="eyebrow">Coming next</p>
+        <h1>Grocery list</h1>
+        <p>This will become the shopping checklist after the meals are chosen.</p>
+      </section>
+
+      <section class="card grocery-card">
+        <div id="groceryChecklist" class="grocery-checklist"></div>
+      </section>
+    </div>
+
+    <div id="places-to-visit" class="page" hidden>
+      <section class="hero compact-hero">
+        <p class="eyebrow">After we decide</p>
+        <h1>Places to visit</h1>
+        <p>This tab will hold the finalized places and activity plan later. For now, the suggestions survey is under Meal Ideas.</p>
+      </section>
+
+      <section class="card muted-card">
+        <h2>Nothing finalized yet</h2>
+        <p>Once everyone gives ideas, we can move the chosen places here.</p>
       </section>
     </div>
   </main>
